@@ -1,7 +1,8 @@
 package no.oslomet.cs.algdat;
 
 import java.util.Comparator;
-import java.util.Iterator;
+import java.util.Iterator
+import java.util.Objects;
 
 public class DobbeltLenketListe<T> implements Liste<T> {
     // Innebygd (Trenger ikke endres)
@@ -34,28 +35,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     // Oppgave 0
     public static int gruppeMedlemmer() {
-        return 0; // Returner hvor mange som er i gruppa deres
+        return 1; // Returner hvor mange som er i gruppa deres
     }
 
     // Oppgave 1
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(a);
+
+        for (T verdi : a) {
+            if (verdi != null) {
+                Node<T> ny = new Node<>(verdi);
+
+                if (antall == 0) {
+                    hode = hale = ny;
+                } else {
+                    ny.forrige = hale;
+                    hale.neste = ny;
+                    hale = ny;
+                }
+
+                antall++;
+            }
+        }
     }
 
     @Override
     public int antall() {
-        throw new UnsupportedOperationException();
+        return antall;
     }
 
     @Override
     public boolean tom() {
-        throw new UnsupportedOperationException();
+        return antall == 0;
     }
-
     // Oppgave 2
     @Override
     public String toString() {
