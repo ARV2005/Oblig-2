@@ -71,41 +71,123 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean tom() {
         return antall == 0;
     }
-    // Oppgave 2
+        // Oppgave 2
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> p = hode;
+
+        while (p != null) {
+            sb.append(p.verdi);
+
+            if (p.neste != null) {
+                sb.append(", ");
+            }
+
+            p = p.neste;
+        }
+
+        sb.append("]");
+        return sb.toString();
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> p = hale;
+
+        while (p != null) {
+            sb.append(p.verdi);
+
+            if (p.forrige != null) {
+                sb.append(", ");
+            }
+
+            p = p.forrige;
+        }
+
+        sb.append("]");
+        return sb.toString();
     }
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi);
+
+        Node<T> ny = new Node<>(verdi);
+
+        if (antall == 0) {
+            hode = hale = ny;
+        } else {
+            ny.forrige = hale;
+            hale.neste = ny;
+            hale = ny;
+        }
+
+        antall++;
+        endringer++;
+
+        return true;
     }
 
     // Oppgave 3
     private Node<T> finnNode(int indeks) {
-        throw new UnsupportedOperationException();
+        if (indeks < antall / 2) {
+            Node<T> p = hode;
+
+            for (int i = 0; i < indeks; i++) {
+                p = p.neste;
+            }
+
+            return p;
+        } else {
+            Node<T> p = hale;
+
+            for (int i = antall - 1; i > indeks; i--) {
+                p = p.forrige;
+            }
+
+            return p;
+        }
     }
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        return finnNode(indeks).verdi;
     }
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
-    }
+        Objects.requireNonNull(nyverdi);
+        indeksKontroll(indeks, false);
 
+        Node<T> p = finnNode(indeks);
+        T gammelverdi = p.verdi;
+
+        p.verdi = nyverdi;
+        endringer++;
+
+        return gammelverdi;
+    }
 
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
-    }
+        fraTilKontroll(fra, til);
 
+        DobbeltLenketListe<T> liste = new DobbeltLenketListe<>();
+
+        if (fra == til) {
+            return liste;
+        }
+
+        Node<T> p = finnNode(fra);
+
+        for (int i = fra; i < til; i++) {
+            liste.leggInn(p.verdi);
+            p = p.neste;
+        }
+
+        return liste;
+    }
     // Oppgave 4
     @Override
     public int indeksTil(T verdi) {
