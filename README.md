@@ -23,13 +23,25 @@ leggInn() leger inn en ny node bakerst i listen.
 Jeg passer på å oppdatere pekerne, antall og endringer.
 
 # Oppgave 3
-I oppgave 3 gjorde vi ...
+I oppgave 3 lagde jeg finnNode() som finner noden på en bestemt indeks.
+Den starter fra hode eller hale, avhengig av hvilken side av indeksen som er nærmest.
+hent() bruker finnNode() for å finne riktig verdi.
+oppdater() bytter ut verdien på en indeks og returnerer den gammle verdien.
+Jeg lagde også subliste() som lager en ny liste med verdiene fra fra til til.
 
 # Oppgave 4
-I oppgave 4 gjorde vi ...
+I oppgave 4 lagde jeg indeksTil() som går igjennom listen fra starten.
+Den returnerer indeksen til den første verdien som passer.
+Hvis verdien ikke finnes, returnerer den -1.
+Jeg bruker Objects.equals() slik at det også funker når verdien er null.
+inneholder() bruker indeksTil() for å sjekke om verdiene finnes i listen.
 
 # Oppgave 5
-I oppgave 5 gjorde vi ...
+I oppgave 5 lagde jeg leggInn() for å legge inn en verdi på en bestemt indeks.
+Jeg har tatt hensyn til at verdien kan legges i starten, slutten, midten eller i en tom liste.
+Jeg kobler den nye noden sammen med nodene rundt slik at pekerne blir riktige.
+antall og endringer økes når en verdi legges inn.
+Det er ikke mulig å legge inn en null-verdi.
 
 # Oppgave 6
 I oppgave 6 gjorde vi ...
