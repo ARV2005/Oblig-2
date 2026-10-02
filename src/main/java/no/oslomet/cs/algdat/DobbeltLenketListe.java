@@ -188,21 +188,59 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         return liste;
     }
-    // Oppgave 4
+        // Oppgave 4
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        Node<T> p = hode;
+        int indeks = 0;
+
+        while (p != null) {
+            if (Objects.equals(p.verdi, verdi)) {
+                return indeks;
+            }
+
+            p = p.neste;
+            indeks++;
+        }
+
+        return -1;
     }
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        return indeksTil(verdi) != -1;
     }
 
-    // Oppgave 5
+   // Oppgave 5
     @Override
     public void leggInn(int indeks, T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi);
+        indeksKontroll(indeks, true);
+
+        Node<T> ny = new Node<>(verdi);
+
+        if (antall == 0) {
+            hode = hale = ny;
+        } else if (indeks == 0) {
+            ny.neste = hode;
+            hode.forrige = ny;
+            hode = ny;
+        } else if (indeks == antall) {
+            ny.forrige = hale;
+            hale.neste = ny;
+            hale = ny;
+        } else {
+            Node<T> p = finnNode(indeks);
+
+            ny.forrige = p.forrige;
+            ny.neste = p;
+
+            p.forrige.neste = ny;
+            p.forrige = ny;
+        }
+
+        antall++;
+        endringer++;
     }
 
     // Oppgave 6
