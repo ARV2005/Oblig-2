@@ -44,7 +44,15 @@ antall og endringer økes når en verdi legges inn.
 Det er ikke mulig å legge inn en null-verdi.
 
 # Oppgave 6
-I oppgave 6 gjorde vi ...
+I oppgave 6 lagde jeg fjern() for å fjerne en verdi eller en verdi på en bestemt indeks.
+Jeg passer på å oppdatere pekerne til forrige og neste node når en node fjernes.
+Hvis den første eller siste noden fjernes, oppdateres hode eller hale.
+antall og endringer oppdateres etter en verdi er fjernet.
+fjern(T verdi) går gjennom listen til den finner den første verdien som passer.
 
 # Oppgave 8
-I oppgave 8 gjorde vi ...
+I oppgave 8 lagde jeg iterator som går gjennom listen fra starten.
+Jeg lagde også en iterator som kan starte på en bestemt indeks.
+next() returnerer neste verdi og flytter iteratoren videre i listen.
+hasNext() sjekker om det finnes flere verdier å hetne.
+Jeg sjekker også om listen har blitt endret etter iteratoren ble laget.
